@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 🤍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#ffe6ef,#fff);
+  color:#3a1c2a;
+  transition:background 1s ease,color 1s ease;
+}
+
+.page{
+  min-height:100vh;
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:40px 20px;
+}
+
+.page.active{display:flex}
+
+h1{font-size:1.9rem;margin-bottom:15px}
+p{font-size:0.95rem;line-height:1.8;max-width:520px}
+
+.media{
+  width:220px;
+  max-width:85%;
+  border-radius:18px;
+  margin-bottom:25px;
+}
+
+button{
+  margin-top:25px;
+  padding:14px 28px;
+  border:none;
+  border-radius:30px;
+  background:#ff4f8b;
+  color:white;
+  font-size:0.9rem;
+  cursor:pointer;
+}
+
+.dark{
+  background:linear-gradient(135deg,#12080f,#2a0d1a,#3a1024);
+  color:#f6e9ef;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+  <img src="val1-cute.gif" class="media">
+  <h1>Hey 🤍</h1>
+  <p>
+    This isn’t just another Valentine thing.  
+    But let’s start light… no pressure.
+  </p>
+  <button onclick="go(2)">Okay 🙂</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+  <img src="val2-still.jpg" class="media">
+  <h1>Just one thing</h1>
+  <p>
+    Before you read what comes next…  
+    take a breath and read it slowly.
+  </p>
+  <button onclick="startMusic(); go(3)">I’m here</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page dark" id="p3">
+  <img src="val3-warm.gif" class="media">
+  <h1>Happy Valentine’s Day 🤍</h1>
+  <p>
+    You matter to me.  
+    In a quiet way. In a real way.  
+    Not just today.
+  </p>
+  <button onclick="go(4)">One last thing…</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page dark" id="p4">
+  <h1>This is me being honest</h1>
+  <p>
+    I’ve been carrying this quietly because I didn’t want to rush you  
+    or turn my feelings into pressure.
+    <br><br>
+    But the truth is, I care about you deeply.  
+    I like you for who you are, not for what you give back.
+    <br><br>
+    I don’t need an answer right now.  
+    I just wanted you to know how real this is for me.
+  </p>
+</div>
+
+<!-- MUSIC -->
+<audio id="music" src="valentine.mp3" loop></audio>
+
+<script>
+const music = document.getElementById('music');
+let volumeLevel = 0;
+
+function go(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('p'+n).classList.add('active');
+}
+
+function startMusic(){
+  music.volume = 0;
+  music.play();
+
+  const fade = setInterval(()=>{
+    if(volumeLevel < 0.4){
+      volumeLevel += 0.02;
+      music.volume = volumeLevel;
+    } else {
+      clearInterval(fade);
+    }
+  },200);
+}
+</script>
+
+</body>
+</html>
