@@ -8,13 +8,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 body{
   font-family:'Poppins',sans-serif;
   background:linear-gradient(135deg,#ffe6ef,#fff);
   color:#3a1c2a;
-  transition:background 1s ease,color 1s ease;
 }
 
 .page{
@@ -27,10 +30,20 @@ body{
   padding:40px 20px;
 }
 
-.page.active{display:flex}
+.page.active{
+  display:flex;
+}
 
-h1{font-size:1.9rem;margin-bottom:15px}
-p{font-size:0.95rem;line-height:1.8;max-width:520px}
+h1{
+  font-size:1.9rem;
+  margin-bottom:15px;
+}
+
+p{
+  font-size:0.95rem;
+  line-height:1.8;
+  max-width:520px;
+}
 
 .media{
   width:220px;
@@ -78,7 +91,7 @@ button{
     Before you read what comes next…  
     take a breath and read it slowly.
   </p>
-  <button onclick="startMusic(); go(3)">I’m here</button>
+  <button onclick="startMusicAndGo()">I’m here</button>
 </div>
 
 <!-- PAGE 3 -->
@@ -108,30 +121,21 @@ button{
   </p>
 </div>
 
-<!-- MUSIC -->
-<audio id="music" src="valentine.mp3" loop></audio>
+<!-- AUDIO -->
+<audio id="music" src="valentine.mp3" loop playsinline></audio>
 
 <script>
 const music = document.getElementById('music');
-let volumeLevel = 0;
 
 function go(n){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('p'+n).classList.add('active');
 }
 
-function startMusic(){
-  music.volume = 0;
-  music.play();
-
-  const fade = setInterval(()=>{
-    if(volumeLevel < 0.4){
-      volumeLevel += 0.02;
-      music.volume = volumeLevel;
-    } else {
-      clearInterval(fade);
-    }
-  },200);
+function startMusicAndGo(){
+  music.volume = 0.4;
+  music.play();   // MUST be directly on click
+  go(3);
 }
 </script>
 
